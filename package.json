@@ -1,0 +1,21 @@
+{
+  "name": "cromma",
+  "version": "1.0.0",
+  "description": "cromma-backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app"
+  },
+  "author": "numeru",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.4",
+    "sequelize-cli": "^6.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
