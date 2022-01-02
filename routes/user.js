@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
         include: [
           {
             model: Keyword,
-            attributes: ['content'],
+            attributes: ['id', 'content'],
           },
         ],
       });
@@ -67,7 +67,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         include: [
           {
             model: Keyword,
-            attributes: ['content'],
+            attributes: ['id', 'content'],
           },
         ],
       });

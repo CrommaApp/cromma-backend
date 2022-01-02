@@ -8,6 +8,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   try {
     const keyword = await Keyword.create({
       content: req.body.content,
+      UserId: req.user.id,
     });
     res.status(201).json({
       statusCode: 201,
