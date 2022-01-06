@@ -8,6 +8,9 @@ const cors = require('cors');
 const keywordRoute = require('./routes/keyword');
 const userRoute = require('./routes/user');
 const passportConfig = require('./passport');
+const hpp = require('hpp');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 dotenv.config();
 
@@ -22,9 +25,17 @@ db.sequelize
 
 passportConfig();
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(hpp());
+  app.use(helmet());
+  app.use(morgan('combined'));
+} else {
+  app.use(morgan('dev'));
+}
+
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://crommaapp.github.io',
     credentials: true,
   })
 );
