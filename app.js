@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(
   cors({
-    origin: 'https://crommaapp.github.io',
+    origin: ['http://localhost:3000', 'https://dl5egqsae28g9.cloudfront.net'],
     credentials: true,
   })
 );
