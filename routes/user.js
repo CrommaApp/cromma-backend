@@ -17,7 +17,6 @@ router.get('/', async (req, res, next) => {
         include: [
           {
             model: Post,
-            attributes: ['id'],
           },
         ],
       });
