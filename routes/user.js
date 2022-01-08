@@ -9,22 +9,17 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const fullUserWithoutPassword = await User.findOne({
+      const userWithoutPassword = await User.findOne({
         where: { id: req.user.id },
         attributes: {
           exclude: ['password'],
         },
-        include: [
-          {
-            model: Post,
-          },
-        ],
       });
       res.status(200).json({
         statusCode: 200,
         status: 'success',
         message: '',
-        data: fullUserWithoutPassword,
+        data: userWithoutPassword,
       });
     } else {
       res.status(200).json({
@@ -58,23 +53,18 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginErr);
         return next(loginErr);
       }
-      const fullUserWithoutPassword = await User.findOne({
+      const userWithoutPassword = await User.findOne({
         where: { id: user.id },
         attributes: {
           exclude: ['password'],
         },
-        include: [
-          {
-            model: Post,
-            attributes: ['id'],
-          },
-        ],
       });
+
       return res.status(200).json({
         statusCode: 200,
         status: 'success',
         message: '로그인에 성공했습니다.',
-        data: fullUserWithoutPassword,
+        data: userWithoutPassword,
       });
     });
   })(req, res, next);
