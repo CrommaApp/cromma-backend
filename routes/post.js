@@ -68,7 +68,11 @@ router.delete('/:postId', isLoggedIn, async (req, res, next) => {
         UserId: req.user.id,
       },
     });
-    res.status(200).json({ PostId: parseInt(req.params.postId, 10) });
+    res.status(200).json({
+      statusCode: 200,
+      status: 'success',
+      message: '게시글 삭제 성공',
+    });
   } catch (error) {
     console.error(error);
     next(error);
