@@ -1,6 +1,7 @@
 const express = require('express');
 const Post = require('../models/post');
 const { isLoggedIn } = require('./middlewares');
+const { User } = require('../models');
 
 const router = express.Router();
 
@@ -38,21 +39,11 @@ router.get('/:postId', async (req, res, next) => {
       });
     }
 
-    const fullPost = await Post.findOne({
-      where: { id: post.id },
-      include: [
-        {
-          model: User,
-          attributes: ['id', 'userId'],
-        },
-      ],
-    });
-
     res.status(200).json({
       statusCode: 200,
       status: 'success',
       message: '',
-      data: fullPost,
+      data: post,
     });
   } catch (error) {
     console.error(error);
@@ -71,7 +62,7 @@ router.delete('/:postId', isLoggedIn, async (req, res, next) => {
     res.status(200).json({
       statusCode: 200,
       status: 'success',
-      message: '게시글 삭제 성공',
+      message: '게시글이 삭제되었습니다.',
     });
   } catch (error) {
     console.error(error);
