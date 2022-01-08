@@ -39,11 +39,21 @@ router.get('/:postId', async (req, res, next) => {
       });
     }
 
+    const fullPost = await Post.findOne({
+      where: { id: post.id },
+      include: [
+        {
+          model: User,
+          attributes: ['userId'],
+        },
+      ],
+    });
+
     res.status(200).json({
       statusCode: 200,
       status: 'success',
       message: '',
-      data: post,
+      data: fullPost,
     });
   } catch (error) {
     console.error(error);
