@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const db = require('./models');
 const cors = require('cors');
-const keywordRoute = require('./routes/keyword');
+const postRoute = require('./routes/post');
+const postsRoute = require('./routes/posts');
 const userRoute = require('./routes/user');
 const passportConfig = require('./passport');
 const hpp = require('hpp');
@@ -53,7 +54,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/keyword', keywordRoute);
+app.use('/post', postRoute);
+app.use('/posts', postsRoute);
 app.use('/user', userRoute);
 
 app.listen(3065, () => {

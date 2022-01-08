@@ -25,6 +25,6 @@ module.exports = class User extends Model {
     );
   }
   static associate(db) {
-    db.User.hasMany(db.Keyword);
+    db.User.hasMany(db.Post);
   }
 };
