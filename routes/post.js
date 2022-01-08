@@ -14,7 +14,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
     res.status(201).json({
       statusCode: 201,
       status: 'success',
-      message: '',
+      message: '게시글이 업로드 되었습니다.',
       data: post,
     });
   } catch (error) {
