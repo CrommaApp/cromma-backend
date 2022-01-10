@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://dl5egqsae28g9.cloudfront.net'],
+    origin: ['http://localhost:3000', 'http://cromma.site'],
     credentials: true,
   })
 );
@@ -49,6 +49,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      domain: process.env.NODE_ENV === 'production' && '.cromma.site',
+    },
   })
 );
 app.use(passport.initialize());
@@ -58,6 +63,6 @@ app.use('/post', postRoute);
 app.use('/posts', postsRoute);
 app.use('/user', userRoute);
 
-app.listen(3065, () => {
+app.listen(80, () => {
   console.log('서버 실행 중');
 });
